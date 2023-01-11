@@ -5,9 +5,7 @@ import dev.be.feign.common.dto.BaseResponseInfo;
 import dev.be.feign.feign.config.DemoFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(
         name = "demo-client",   // pk 같은 값
@@ -21,4 +19,9 @@ public interface DemoFeignClient {
     ResponseEntity<BaseResponseInfo> callGet(@RequestHeader("CustomHeaderName") String customHeader,
                                              @RequestParam("name") String name,
                                              @RequestParam("age") Long age);
+
+    @PostMapping("/post") // url/get 으로 요청 (해당 url은 현재 localhost:8080/target_server 이다.
+    ResponseEntity<BaseResponseInfo> callPost(@RequestHeader("CustomHeaderName") String customHeader,
+                                              @RequestBody BaseRequestInfo baseRequestInfo);
+
 }
