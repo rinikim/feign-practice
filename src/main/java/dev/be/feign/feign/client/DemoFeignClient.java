@@ -24,4 +24,6 @@ public interface DemoFeignClient {
     ResponseEntity<BaseResponseInfo> callPost(@RequestHeader("CustomHeaderName") String customHeader,
                                               @RequestBody BaseRequestInfo baseRequestInfo);
 
+    @GetMapping("/error") // url/get 으로 요청 (해당 url은 현재 localhost:8080/target_server 이다.
+    ResponseEntity<BaseResponseInfo> callErrorDecoder();
 }
